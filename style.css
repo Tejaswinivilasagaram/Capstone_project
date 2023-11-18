@@ -1,0 +1,85 @@
+/* Your other CSS rules remain unchanged */
+    body {
+      background: #008080;
+      background: linear-gradient(to left, #008080 0%, #008080 100%);
+    }
+
+    footer a {
+      #color: #fff;
+      color: #AAA
+    }
+
+    footer a:hover {
+      #color: #fff;
+      color: #AAA
+    }
+
+    h1 {
+      text-align: center;
+      color: black;
+    }
+
+    .wrapper {
+      background: #FFC0CB;
+      width: 40%;
+      margin: 2% auto;
+      padding: 8px 0 0 0;
+
+    }
+ .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+   /* Apply bold font and color to both form groups and form-check labels */
+.form-group label,
+.form-check label {
+  font-weight: bold;
+  color: #3498db;
+}
+
+/* Apply normal font to form-check input elements */
+.form-check-input {
+  font-weight: normal;
+}
+
+/* Optional: If you want to override bold font for specific form-check labels */
+.form-check label.special-label {
+  font-weight: normal;
+  color: #ff5733; /* Change color for the specific label if needed */
+}
+
+ .form-group.text-center {
+  text-align: center;
+}
+
+    .ph-area {
+      position: absolute;
+      top: 0;
+      padding: 7px 0 0 13px;
+      transition: 200ms;
+      opacity: 0.5;
+      font-family: Merienda;
+    }
+
+    .btn-primary,
+    .btn-danger {
+      border-radius: 4px;
+      padding: 10px;
+      width: 49.4%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .form-control {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .form-control:focus+.ph-area,
+    .form-control:valid+.ph-area {
+      font-size: 80%;
+      transform: translate3d(0, -100%, 0);
+      opacity: 1;
+      color: #fff;
+    }
