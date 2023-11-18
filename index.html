@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Obesity Prediction</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/CSS/style.css')}}">
+
+  <style>
+    body {
+      #background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+      #background: #7e7e7e;
+      #background: linear-gradient(to left, #7e7e7e 0%, #7e7e7e 100%);
+      background-image: url('static/image/1.jpeg');
+            background-repeat:no-repeat;
+           background-attachement:fixed;
+           background-size: cover;
+    }
+
+    footer a {
+      #color: #fff;
+      color: #AAA
+    }
+
+    footer a:hover {
+      #color: #fff;
+      color: #AAA
+    }
+
+    h1 {
+      text-align: center;
+      color: black;
+    }
+
+    .wrapper {
+      #background: linear-gradient(to left, #EBC2D5 0%, #DA83AC 100%);
+      background: linear-gradient(to left, #777777 0%, #333333 100%);
+      width: 60%;
+      margin: 2% auto;
+      padding: 8px 0 0 0;
+
+    }
+ .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+.form-group label{
+  font-weight: bold;
+  color: #9EA1D4;
+  #color: #3498db;
+}
+.form-check-input {
+  font-weight: normal;
+}
+.form-check label {
+  font-weight: normal;
+  color: #FFCBCB;
+}
+.form-group.buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-group.buttons button {
+      width: 100%; /* Make the buttons take up the full width of their container */
+    }
+    .ph-area {
+      position: absolute;
+      top: 0;
+      padding: 7px 0 0 13px;
+      transition: 200ms;
+      opacity: 0.5;
+      font-family: Merienda;
+    }
+
+    .btn-primary,
+    .btn-danger {
+      border-radius: 4px;
+      padding: 10px;
+      width: 49.4%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .form-control {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .form-control:focus+.ph-area,
+    .form-control:valid+.ph-area {
+      font-size: 80%;
+      transform: translate3d(0, -100%, 0);
+      opacity: 1;
+      color: #fff;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>
+    Obesity Prediction
+  </h1>
+  <br>
+
+  <div class="wrapper">
+    <div class="container my-5">
+    <form action="/predict" method="post">
+     <div class="row">
+          <div class="col-md-6">
+      <div class="form-group">
+  <label>Food Between Meals:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="food_btw_meals" value="3" required>
+    <label class="form-check-label">Frequently</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="food_btw_meals" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="food_btw_meals" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="food_btw_meals" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Healthy Food Regularly:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Healthy_food_regularly" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Healthy_food_regularly" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+               <!-- Water -->
+<div class="form-group">
+  <label for="water">Enter litres of water:</label>
+  <input type="number" name="water" id="water" class="form-control" required>
+</div>
+<div class="form-group">
+  <label>Physical Activity:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="physical_activity" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="physical_activity" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+<div class="form-group">
+  <label for="height">Enter Your Height:</label>
+  <input type="number" name="height" id="height" class="form-control" required>
+</div>
+
+<!-- Weight -->
+<div class="form-group">
+  <label for="weight">Enter Your Weight:</label>
+  <input type="number" name="weight" id="weight" class="form-control" required>
+</div>
+               <!-- TechNology -->
+<div class="form-group">
+  <label>TechNology:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="TechNology" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="TechNology" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="TechNology" value="0" required>
+    <label class="form-check-label">Never</label>
+  </div>
+</div>
+
+<!-- Number of Meals -->
+<div class="form-group">
+  <label for="numberof_meals">Enter no.of meals:</label>
+  <input type="number" name="numberof_meals" id="numberof_meals" class="form-control" required>
+</div>
+
+<!-- Family History -->
+<div class="form-group">
+  <label>Family History:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="family_history" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="family_history" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<!-- Alcohol -->
+<div class="form-group">
+  <label>Alcohol:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="alcohol" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="alcohol" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+               <!-- Transportation -->
+<div class="form-group">
+  <label>Transportation:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Transportation" value="3" required>
+    <label class="form-check-label">Walking</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Transportation" value="2" required>
+    <label class="form-check-label">Automobile</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Transportation" value="1" required>
+    <label class="form-check-label">Motorbike</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Transportation" value="0" required>
+    <label class="form-check-label">Public Transportation</label>
+  </div>
+</div>
+
+<!-- Smoke -->
+<div class="form-group">
+  <label>Smoke:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Smoke" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Smoke" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Smoke" value="0" required>
+    <label class="form-check-label">Never</label>
+  </div>
+</div>
+       <div class="form-group text-center">
+              <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+<div class="form-group">
+  <label>Calories Consuming:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="calories_consuming" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="calories_consuming" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+<div class="form-group">
+  <label>Spend Time in front of Screen:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="spend_time_infront_of_screen" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="spend_time_infront_of_screen" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<!-- Age -->
+<div class="form-group">
+  <label for="age">Enter Your Age:</label>
+  <input type="number" name="age" id="age" class="form-control" required>
+</div>
+
+<!-- Gender -->
+<div class="form-group">
+  <label>Gender:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Gender" value="1" required>
+    <label class="form-check-label">Male</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Gender" value="0" required>
+    <label class="form-check-label">Female</label>
+  </div>
+</div>
+               <!-- Gym Regularly -->
+<div class="form-group">
+  <label>Gym Regularly:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Gym_regularly" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Gym_regularly" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Gym_regularly" value="0" required>
+    <label class="form-check-label">Never</label>
+  </div>
+</div>
+
+<!-- Stress -->
+<div class="form-group">
+  <label>Stress:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Stress" value="2" required>
+    <label class="form-check-label">Episodic Stress</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Stress" value="1" required>
+    <label class="form-check-label">Acute Stress</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Stress" value="0" required>
+    <label class="form-check-label">Chronic Stress</label>
+  </div>
+</div>
+
+<!-- Junk Food Regularly -->
+<div class="form-group">
+  <label>Junk Food Regularly:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="junk_food_regularly" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="junk_food_regularly" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="junk_food_regularly" value="0" required>
+    <label class="form-check-label">Never</label>
+  </div>
+</div>
+               <!-- Heart Disease -->
+<div class="form-group">
+  <label>Heart Disease:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Heart_disease" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Heart_disease" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<!-- Asthma -->
+<div class="form-group">
+  <label>Asthma:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Asthma" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Asthma" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<!-- Eat Back-to-Back Whole Day -->
+<div class="form-group">
+  <label>Eat Back-to-Back Whole Day:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Eat_backtoback_whole_day" value="2" required>
+    <label class="form-check-label">Always</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Eat_backtoback_whole_day" value="1" required>
+    <label class="form-check-label">Sometimes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Eat_backtoback_whole_day" value="0" required>
+    <label class="form-check-label">Never</label>
+  </div>
+</div>
+               <!-- Diabetes -->
+<div class="form-group">
+  <label>Diabetes:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Diabetes" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Diabetes" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+
+<!-- Allergy -->
+<div class="form-group">
+  <label>Allergy:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Allergy" value="1" required>
+    <label class="form-check-label">Yes</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="Allergy" value="0" required>
+    <label class="form-check-label">No</label>
+  </div>
+</div>
+      <div class="form-group text-center">
+        <input type="reset" class="btn btn-danger" value="Reset">
+      </div>
+          </div>
+     </div>
+    </form>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

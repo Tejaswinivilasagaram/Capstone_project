@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+
+            background-image: url('static/image/bg3.jpeg');
+            background-repeat:no-repeat;
+            background-attachement:fixed;
+            background-size: cover;
+        }
+    .advice {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="advice">
+        {% if prediction != 0 %}
+            <h1 style="color: red;">Obesed</h1>
+            <h2 style="color: blue;">Precautions to be taken</h2>
+            <ul>
+
+                <li>Take proper exercise and physical activities Regularly: Stick to your prescribed schedule.</li>
+                <li>Get Enough Sleep: Aim for 7-9 hours of quality sleep each night to avoid stress.</li>
+                <li>Manage Stress: Practice stress-reduction techniques like deep breathing or meditation.</li>
+                <li>Avoid Triggers: Identify and avoid personal triggers, like lack of sleep or stress.</li>
+                <li>Limit Alcohol : These substances can increase the risk.</li>
+                <li>Dietary Considerations: Discuss dietary options with your healthcare provider.</li>
+            </ul>
+        {% else %}
+            <h2 style="color: green;">Congratulations, you are not Obesed</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
